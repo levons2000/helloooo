@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 s = editTextMain.getText().toString();
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 intent.putExtra("KEY_FIRST", s);
-                startActivity(intent);
+                startActivityForResult(intent, 2);
             }
         });
 

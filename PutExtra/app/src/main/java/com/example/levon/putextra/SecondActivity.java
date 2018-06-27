@@ -25,9 +25,10 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String ss = getIntent().getExtras().getString("KEY_FIRST") + editTextSecond.getText().toString();
-                Intent intent = new Intent(SecondActivity.this, MainActivity.class);
+                Intent intent = new Intent();
                 intent.putExtra("KEY_SECOND", ss);
-                startActivityForResult(intent, 2);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
     }
