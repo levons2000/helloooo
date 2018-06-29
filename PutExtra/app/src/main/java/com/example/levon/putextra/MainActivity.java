@@ -9,24 +9,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private Button buttonMain;
-    private EditText editTextMain;
     private TextView textView;
-    private String s;
-
+    static final String KEY_FIRST = "KEY_FIRST";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonMain = findViewById(R.id.buttonfirst);
-        editTextMain = findViewById(R.id.textfirst);
+        Button buttonMain = findViewById(R.id.buttonfirst);
+        final EditText editTextMain = findViewById(R.id.textfirst);
         textView = findViewById(R.id.textext);
         buttonMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s = editTextMain.getText().toString();
+                String s = editTextMain.getText().toString();
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("KEY_FIRST", s);
+                intent.putExtra(KEY_FIRST, s);
                 startActivityForResult(intent, 2);
             }
         });
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 2) {
             if (resultCode == RESULT_OK && data != null) {
-                textView.setText(String.valueOf(data.getExtras().getString("KEY_SECOND")));
+                textView.setText(String.valueOf(data.getExtras().getString(SecondActivity.KEY_SECOND)));
             }
         }
     }
